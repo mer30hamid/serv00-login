@@ -1,0 +1,33 @@
+name: Restore vless service and send Telegram messages
+
+on:
+  schedule:
+    - cron: '*/20 * * * *'  # Executed once every 20 minutes
+  workflow_dispatch:
+
+jobs:
+  restore_and_notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set Python environment
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'  # Replace the Python version you need
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests  # Just install the required dependency, here it is assumed to use requests to send HTTP requests
+
+      - name: Executing the Python script to restore vless service and send Telegram messages
+        env:
+          ACCOUNTS_JSON: ${{ secrets.ACCOUNTS_JSON }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python3 recover_vless.py
+
