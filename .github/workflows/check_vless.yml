@@ -1,8 +1,8 @@
 name: Restore vless service and send Telegram messages
 
 on:
-  schedule:
-    - cron: '*/20 * * * *'  # Executed once every 20 minutes
+  # schedule:
+    # - cron: '*/20 * * * *'  # Executed once every 20 minutes
   workflow_dispatch:
 
 jobs:
