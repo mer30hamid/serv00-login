@@ -2,9 +2,11 @@ import os
 import json
 import subprocess
 import requests
+import sys
 
 def send_telegram_message(token, chat_id, message):
     telegram_url = f"https://api.telegram.org/bot{token}/sendMessage"
+    print(telegram_url)
     telegram_payload = {
         "chat_id": chat_id,
         "text": message,
@@ -22,8 +24,10 @@ def send_telegram_message(token, chat_id, message):
 
 # Get key from environment variable
 USER = os.getenv('USER')
-telegram_token = os.getenv('TELEGRAM_BOT_TOKEN')
-telegram_chat_id = os.getenv('TELEGRAM_CHAT_ID')
+#telegram_token = os.getenv('TELEGRAM_BOT_TOKEN')
+#telegram_chat_id = os.getenv('TELEGRAM_CHAT_ID')
+telegram_token = sys.argv[1]
+telegram_chat_id = sys.argv[2]
 
 
 # Initialize the message
