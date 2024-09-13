@@ -21,6 +21,7 @@ def send_telegram_message(token, chat_id, message):
         print("Send Telegram message successfully")
 
 # Get key from environment variable
+USER = os.getenv('USER')
 telegram_token = os.getenv('TELEGRAM_BOT_TOKEN')
 telegram_chat_id = os.getenv('TELEGRAM_CHAT_ID')
 
